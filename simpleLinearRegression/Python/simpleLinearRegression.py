@@ -37,6 +37,9 @@ plt.show()
 """## Visualising the Test set results"""
 
 plt.scatter(x_test, y_test, color="red")
+
+# can leave as X_train because regression line is unique, 
+# will be same for x_test
 plt.plot(x_train, reg.predict(x_train), color="blue")
 plt.title("Salary vs YE (Train)")
 plt.xlabel("Years of Experience")

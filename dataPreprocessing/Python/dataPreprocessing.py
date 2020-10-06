@@ -38,6 +38,9 @@ print(y_test)
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train[:, 3:] = sc.fit_transform(X_train[:, 3:])
+
+#since test is like "newdata" we only transform data we can't fit it again
+#with new scaler, we need the same scaler from training set to get accurate result
 X_test[:, 3:] = sc.transform(X_test[:, 3:])
 print(X_train)
 print(X_test)

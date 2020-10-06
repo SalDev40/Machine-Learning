@@ -1,8 +1,7 @@
 # Data Preprocessing
 
 # Importing the dataset
-dataset = Data
-
+dataset = read.csv('Data.csv')
 
 # Taking care of missing data
 dataset$Age = ifelse(is.na(dataset$Age),
@@ -12,6 +11,7 @@ dataset$Age = ifelse(is.na(dataset$Age),
                          mean(x, na.rm = TRUE)
                      ),
                      dataset$Age)
+
 dataset$Salary = ifelse(is.na(dataset$Salary),
                         ave(
                           dataset$Salary,
@@ -37,9 +37,17 @@ dataset$Purchased = factor(dataset$Purchased,
 # install.packages('caTools')
 library(caTools)
 set.seed(123)
-split = sample.split(dataset$Purchased, SplitRatio = 2/3)
-training_set = subset(dataset, split == TRUE)
-test_set = subset(dataset, split == FALSE)
+split = sample.split(dataset$Purchased, SplitRatio = .8)
+training_set1 = subset(dataset, split == TRUE)
+test_set1 = subset(dataset, split == FALSE)
+
+
+#option 2 to split into train and test
+sample <- sample.int(n = nrow(dataset),
+                     size = floor(.8*nrow(dataset)),
+                     replace = F)
+train <- dataset[sample, ]
+test  <- dataset[-sample, ]
 
 
 

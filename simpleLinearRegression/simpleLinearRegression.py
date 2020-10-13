@@ -1,3 +1,5 @@
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -10,12 +12,11 @@ y = df.iloc[:, -1].values
 
 """## Splitting the dataset into the Training set and Test set"""
 
-from sklearn.model_selection import train_test_split
-x_train, x_test, y_train, y_test = train_test_split(x,y, test_size = 0.25, random_state = 0)
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, test_size=0.25, random_state=0)
 
 """## Training the Simple Linear Regression model on the Training set"""
 
-from sklearn.linear_model import LinearRegression
 reg = LinearRegression().fit(x_train, y_train)
 
 """## Predicting the Test set results"""
@@ -38,7 +39,7 @@ plt.show()
 
 plt.scatter(x_test, y_test, color="red")
 
-# can leave as X_train because regression line is unique, 
+# can leave as X_train because regression line is unique,
 # will be same for x_test
 plt.plot(x_train, reg.predict(x_train), color="blue")
 plt.title("Salary vs YE (Train)")

@@ -18,7 +18,9 @@ x[:,1:3] = SimpleImputer(missing_values=np.nan,strategy="mean").fit_transform(x[
 # Encoding the Independent Variable
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
-ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [0])], remainder='passthrough')
+ct = ColumnTransformer(transformers=[('encoder',
+ OneHotEncoder(), [0])], 
+remainder='passthrough')
 x = np.array(ct.fit_transform(x))
 
 
